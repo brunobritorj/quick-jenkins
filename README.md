@@ -12,5 +12,5 @@
 # How to use this image
 
 ```
-$ docker run -dp 8080:8080 --name jenkins quick-jenkins
+docker run -dp 8080:8080 --name jenkins brunobritorj/quick-jenkins
 ```
