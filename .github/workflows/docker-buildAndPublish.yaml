@@ -26,28 +26,29 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      #- name: Log into GitHub Container Registry
-      #  uses: docker/login-action@28218f9b04b4f3f62068d7b6ce6ca5b26e35336c
-      #  with:
-      #    registry: ghcr.io
-      #    username: ${{ github.actor }}
-      #    password: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Log in to Docker Hub
-        uses: docker/login-action@f054a8b539a109f9f41c372932f1ae047eff08c9
+      - name: Log into GitHub Container Registry
+        uses: docker/login-action@28218f9b04b4f3f62068d7b6ce6ca5b26e35336c
         with:
-          username: ${{ secrets.DOCKER_USERNAME }}
-          password: ${{ secrets.DOCKER_PASSWORD }}
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      #- name: Log in to Docker Hub
+      #  uses: docker/login-action@f054a8b539a109f9f41c372932f1ae047eff08c9
+      #  with:
+      #    username: ${{ secrets.DOCKER_USERNAME }}
+      #    password: ${{ secrets.DOCKER_PASSWORD }}
 
       - name: Extract Docker metadata
         id: meta
         uses: docker/metadata-action@98669ae865ea3cffbcbaa878cf57c20bbf1c6c38
         with:
           images: |
-            ${{ env.OWNER }}/${{ github.repository }}
+            ghcr.io/${{ env.OWNER }}/${{ github.repository }}
           flavor: |
             latest=true
-#ghcr.io/${{ env.OWNER }}/${{ github.repository }}
+
+#${{ env.OWNER }}/${{ github.repository }}
 
       - name: Build and push Docker image
         id: build-and-push
