@@ -1,4 +1,5 @@
 FROM ubuntu:20.04
+
 RUN DEBIAN_FRONTEND=noninteractive apt update
 RUN DEBIAN_FRONTEND=noninteractive apt upgrade -y
 
